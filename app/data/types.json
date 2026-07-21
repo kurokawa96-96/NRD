@@ -1,1 +1,44 @@
-
+[
+  {
+    "id": "instant",
+    "name": "Instant Type",
+    "description": "即時的な報酬と刺激を求めるタイプ。新しい体験に強く惹かれます。",
+    "color": "#FF6B6B"
+  },
+  {
+    "id": "influence",
+    "name": "Influence Type",
+    "description": "影響力や他者とのつながりを報酬とするタイプ。",
+    "color": "#4ECDC4"
+  },
+  {
+    "id": "structure",
+    "name": "Structure Type",
+    "description": "秩序、計画性、明確な構造を重視するタイプ。",
+    "color": "#45B7D1"
+  },
+  {
+    "id": "contribution",
+    "name": "Contribution Type",
+    "description": "他者への貢献や社会的な意義を報酬とするタイプ。",
+    "color": "#96CEB4"
+  },
+  {
+    "id": "growth",
+    "name": "Growth Type",
+    "description": "自己成長と可能性の拡大を強く求めるタイプ。",
+    "color": "#FFEEAD"
+  },
+  {
+    "id": "stability",
+    "name": "Stability Type",
+    "description": "安心感と長期的な安定を重視するタイプ。",
+    "color": "#D4A5A5"
+  },
+  {
+    "id": "meaning",
+    "name": "Meaning Type",
+    "description": "人生の意味や目的を探求するタイプ。",
+    "color": "#9B59B6"
+  }
+]
