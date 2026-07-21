@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+:root {
+  --background: #09090b;
+  --foreground: #fafafa;
+  --font-zen-kaku: var(--font-zen-kaku);
+}
+
+body {
+  font-family: var(--font-zen-kaku), system-ui, sans-serif;
+}
+
+.prose h1, .prose h2 {
+  font-family: var(--font-geist-sans);
+}
+
+.nrd-card {
+  transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.nrd-card:hover {
+  transform: translateY(-8px);
+}
