@@ -1,36 +1,32 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Zen_Kaku_Gothic_New } from "next/font/google";
+import { Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const notoSans = Noto_Sans_JP({
   subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  variable: "--font-noto-sans-jp",
 });
 
-const zenKaku = Zen_Kaku_Gothic_New({
-  weight: ["400", "500", "700"],
+const notoSerif = Noto_Serif_JP({
   subsets: ["latin"],
-  variable: "--font-zen-kaku",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  variable: "--font-noto-serif-jp",
 });
 
 export const metadata: Metadata = {
   title: "NRD | Neural Reward Design",
-  description: "Neural Reward Design - 報酬回路から自分と他人を理解する",
+  description: "人と自分を理解する、新しい視点。",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="ja" className={`${geistSans.variable} ${zenKaku.variable} ${geistMono.variable}`}>
-      <body className="font-sans antialiased bg-zinc-950 text-white">
+    <html lang="ja">
+      <body className={`${notoSans.variable} ${notoSerif.variable}`}>
         {children}
       </body>
     </html>
