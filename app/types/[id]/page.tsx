@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import data from "../../../data/types.json";
+import data from "../../data/types.json";
 
 interface TypeRecord {
   id: string;
