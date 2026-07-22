@@ -1,8 +1,6 @@
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 html,
 body {
@@ -12,4 +10,6 @@ body {
 
 body {
   font-family: var(--font-noto-sans-jp), sans-serif;
+  background-color: #FAFAF9;
+  color: #16264A;
 }
