@@ -1,4 +1,8 @@
+"use client";
+
+import { DiagnosisFlow } from "../../components/diagnosis/DiagnosisFlow";
+
 export default function Page() {
-  return <div>Coming Soon</div>;
+  return <DiagnosisFlow />;
 }
 

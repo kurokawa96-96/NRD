@@ -1,4 +1,9 @@
-export default function DiagnosisIntroPage() {
+"use client";
+
+import { useRouter } from "next/navigation";
+
+export default function Page() {
+  const router = useRouter();
   const steps = [
     { label: "質問に答える", body: "いくつかの問いに、直感で答えていただきます。" },
     { label: "傾向を算出する", body: "回答から、何に報酬を感じやすいかの傾向を見ていきます。" },
@@ -43,13 +48,14 @@ export default function DiagnosisIntroPage() {
 
         <div className="mt-16">
           <button
-            disabled
-            className="font-body text-[14px] font-semibold text-white bg-navy/40 rounded px-8 py-3 cursor-not-allowed"
+            type="button"
+            onClick={() => router.push("/diagnosis/start")}
+            className="font-body text-[14px] font-semibold text-white bg-navy rounded px-8 py-3 transition-colors hover:bg-navy/90"
           >
             診断を始める
           </button>
           <div className="font-body text-[11.5px] text-ink-tertiary mt-4">
-            現在、設問を準備しております
+            設問に答えて、診断結果を確認しましょう。
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import data from "../data/types.json";
+import { nrdTypes as data } from "../../src/data/types";
 
 export default function TypesPage() {
   return (
@@ -19,7 +19,7 @@ export default function TypesPage() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {data.map((type: { id: string; name: string; description: string; color: string }) => (
+          {data.map((type: { id: string; name: string; description: string; color?: string }) => (
             <Link
               key={type.id}
               href={`/types/${type.id}`}

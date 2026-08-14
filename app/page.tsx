@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { color, radius, space, shadow, font, weight } from "./tokens";
 
 // 報酬回路をイメージした最小限のシグネチャ図形
@@ -129,30 +130,8 @@ function Card({ title, body }: { title: string; body: string }) {
 export default function NRDLandingPage() {
   return (
     <div style={{ background: color.background, minHeight: "100vh" }}>
-      {/* ヘッダー */}
-      <header
-        style={{
-          maxWidth: 880,
-          margin: "0 auto",
-          padding: `${space(3)} ${space(3)}`,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <div
-          style={{
-            fontFamily: font.display,
-            fontSize: 18,
-            fontWeight: weight.bold,
-            color: color.navy,
-            letterSpacing: "0.12em",
-          }}
-        >
-          NRD
-        </div>
-        <OutlineButton>診断する</OutlineButton>
-      </header>
+      {/* ヘッダーのスペース */}
+      <div style={{ maxWidth: 880, margin: "0 auto", padding: `${space(3)} ${space(3)}` }} />
 
       {/* ヒーロー */}
       <section
@@ -225,8 +204,12 @@ export default function NRDLandingPage() {
             marginTop: space(5),
           }}
         >
-          <FilledButton>診断を始める</FilledButton>
-          <OutlineButton>NRDとは</OutlineButton>
+          <Link href="/diagnosis/start">
+            <FilledButton>診断を始める</FilledButton>
+          </Link>
+          <Link href="/about">
+            <OutlineButton>NRDとは</OutlineButton>
+          </Link>
         </div>
 
         <div

@@ -54,31 +54,23 @@ export default function Header() {
           NRD
         </Link>
 
-        {/* デスクトップナビ */}
-        <nav className="hidden md:flex items-center gap-6">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`font-body text-[12.5px] tracking-[0.02em] transition-colors ${
-                isActive(item.href)
-                  ? "font-semibold text-navy"
-                  : "font-normal text-ink-secondary hover:text-navy"
-              }`}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-
         <div className="flex items-center gap-4">
-          {/* 唯一の塗りつぶしボタン */}
-          <Link
-            href="/diagnosis"
-            className="hidden sm:inline-block font-body text-[12.5px] font-semibold text-white bg-navy rounded-full px-5 py-2 transition-opacity hover:opacity-90"
-          >
-            診断する
-          </Link>
+          <nav className="hidden md:flex items-center gap-6">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`font-body text-[12.5px] tracking-[0.02em] transition-colors ${
+                  isActive(item.href)
+                    ? "font-semibold text-navy"
+                    : "font-normal text-ink-secondary hover:text-navy"
+                }`}
+                onClick={() => setOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
 
           {/* モバイル：ハンバーガー */}
           <button
@@ -112,7 +104,7 @@ export default function Header() {
             <Link
               href="/diagnosis"
               onClick={() => setOpen(false)}
-              className="mt-4 text-center font-body text-[13px] font-semibold text-white bg-navy rounded-full px-5 py-2.5"
+              className="font-body text-[13.5px] py-2.5 mt-2 font-semibold text-navy"
             >
               診断する
             </Link>

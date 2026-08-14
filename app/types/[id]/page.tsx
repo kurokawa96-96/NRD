@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import data from "../../data/types.json";
+import { nrdTypes as data } from "../../../src/data/types";
 
 interface TypeRecord {
   id: string;
@@ -43,6 +43,13 @@ export default function TypeDetailPage({ params }: { params: { id: string } }) {
         <p className="font-body text-[14.5px] text-ink-secondary leading-9">
           {type.description}
         </p>
+
+        {type.content && (
+          <div
+            className="mt-6 prose max-w-none text-ink-secondary"
+            dangerouslySetInnerHTML={{ __html: type.content }}
+          />
+        )}
 
         {/* TODO: 診断ロジック(lib/scoring.ts)完成後、この特性に紐づく
             詳細な傾向・強み・注意点などを data 側に追加して拡張する */}
