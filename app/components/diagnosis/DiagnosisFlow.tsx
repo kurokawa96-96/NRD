@@ -1,6 +1,8 @@
 "use client";
+// 配置先: app/components/diagnosis/DiagnosisFlow.tsx （既存ファイルの上書き）
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { questions } from "@/src/data/questions";
 import { choices } from "@/src/data/choices";
 import type { QuestionSection } from "@/src/data/questions/types";
@@ -11,7 +13,6 @@ import {
 import { analyzeResult } from "@/src/logic/diagnosis/analyzeResult";
 import { CircuitProgress } from "./CircuitProgress";
 import { QuestionCard } from "./QuestionCard";
-import { ResultView } from "./ResultView";
 
 // =====================================================
 // DiagnosisFlow — 診断全体の状態管理（1画面1質問）
@@ -26,7 +27,9 @@ import { ResultView } from "./ResultView";
 // 【表示と集計の分離】
 // このコンポーネントは回答の収集のみを担当し、スコアの意味づけは
 // 一切行わない。完了時に calculateScores() → analyzeResult() を
-// 順番に呼び出し、結果はResultViewへそのまま渡すだけ。
+// 順番に呼び出し、結果は sessionStorage 経由で
+// /diagnosis/result/[type] へ引き継いだうえで遷移する
+// （結果の「表示」はこのコンポーネントの責務から切り離した）。
 
 type AnswerMap = Record<string, string[]>; // questionId -> 選択したchoiceId[]
 
@@ -44,7 +47,12 @@ const SECTION_LABEL: Record<QuestionSection, string> = {
   activity: "活動・行動",
 };
 
+// 結果ページ（/diagnosis/result/[type]）へ渡すためのsessionStorageキー。
+// app/diagnosis/result/[type]/page.tsx 側と同じキー文字列を使用すること。
+const RESULT_STORAGE_KEY = "nrd_result";
+
 export function DiagnosisFlow() {
+  const router = useRouter();
   const [answerMap, setAnswerMap] = useState<AnswerMap>({});
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
@@ -90,13 +98,37 @@ export function DiagnosisFlow() {
     setCurrentIndex((i) => Math.max(0, i - 1));
   }
 
-  if (isFinished) {
+  // 診断完了時：スコア集計 → 結果解釈 → sessionStorageへ保存 →
+  // /diagnosis/result/[type] へ遷移する。
+  useEffect(() => {
+    if (!isFinished) return;
+
     const answers: UserAnswer[] = Object.entries(answerMap).map(
       ([questionId, choiceIds]) => ({ questionId, choiceIds })
     );
     const scores = calculateScores(answers);
     const result = analyzeResult(scores);
-    return <ResultView result={result} scores={scores} />;
+
+    try {
+      sessionStorage.setItem(
+        RESULT_STORAGE_KEY,
+        JSON.stringify({ result, scores })
+      );
+    } catch {
+      // sessionStorageが利用できない環境では、詳細スコアの引き継ぎのみ諦め、
+      // 遷移自体は継続する（結果ページ側がタイプ基本情報でフォールバック表示する）
+    }
+
+    router.push(`/diagnosis/result/${result.primaryType}`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isFinished]);
+
+  if (isFinished) {
+    return (
+      <p className="mx-auto max-w-xl px-6 py-16 text-center text-[#16264A]">
+        結果を計算しています…
+      </p>
+    );
   }
 
   if (!currentQuestion) {
