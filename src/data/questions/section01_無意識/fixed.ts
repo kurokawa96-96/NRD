@@ -1,17 +1,9 @@
 import type { Question } from "../types";
 // 配置先: src/data/questions/section01_無意識/fixed.ts （既存ファイルの上書き）
-// ※既存のQ1F001はそのまま維持し、末尾にQ1F002〜Q1F008を追加する。
+// ※旧Q1F001「休日、ふと時間ができたら何をしていることが多いですか？」は削除。
 
 // 固定質問（分岐なし・全員に表示）
 export const fixedQuestions: Question[] = [
-  {
-    id: "Q1F001",
-    section: "unconscious",
-    question: "休日、ふと時間ができたら何をしていることが多いですか？",
-    type: "single",
-    required: true,
-    active: true,
-  },
   {
     id: "Q1F002",
     section: "unconscious",
