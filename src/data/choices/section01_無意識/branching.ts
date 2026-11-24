@@ -32,7 +32,21 @@ const q1b002Choices: Choice[] = [
   { id: "C1B002J", questionId: "Q1B002", label: "特に感情はなく、必要なこととして対応する", relation: {}, active: true },
 ];
 
+// Q1B003「実際に動くとしたら、どのくらいの負担か」の選択肢
+// 負担の大きさそのものを観察する。負担が大きい＝動かない、小さい＝動く、とは仮定しない。
+// 高負担でも動く人、低負担でも動かない人がいるため、relation はすべて空（収集のみ）。
+const q1b003Choices: Choice[] = [
+  { id: "C1B003A", questionId: "Q1B003", label: "ほとんど負担に感じない", relation: {}, active: true },
+  { id: "C1B003B", questionId: "Q1B003", label: "少し負担だが、問題なくできる", relation: {}, active: true },
+  { id: "C1B003C", questionId: "Q1B003", label: "かなり負担だが、必要なら動く", relation: {}, active: true },
+  { id: "C1B003D", questionId: "Q1B003", label: "負担が大きく、できれば避けたい", relation: {}, active: true },
+  { id: "C1B003E", questionId: "Q1B003", label: "負担の大きさより、動く理由があるかどうかで決まる", relation: {}, active: true },
+  { id: "C1B003F", questionId: "Q1B003", label: "状況や相手によって変わる", relation: {}, active: true },
+  { id: "C1B003G", questionId: "Q1B003", label: "あまり考えたことがない", relation: {}, active: true },
+];
+
 export const branchingChoices: Choice[] = [
   ...q1b001Choices,
   ...q1b002Choices,
+  ...q1b003Choices,
 ];
