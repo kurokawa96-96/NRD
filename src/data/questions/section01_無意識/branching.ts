@@ -28,4 +28,14 @@ export const branchingQuestions: Question[] = [
     active: true,
     triggerChoice: "C1F008F", // 同上（Q1B001の後に表示される）
   },
+  {
+    id: "Q1B003",
+    section: "unconscious",
+    question:
+      "その場面で実際に動くとしたら、あなたにとってどのくらいの負担になりそうですか？",
+    type: "single",
+    required: false,
+    active: true,
+    triggerChoice: "C1F008F", // 同上（Q1B002の後に表示される）
+  },
 ];
